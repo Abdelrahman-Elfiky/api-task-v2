@@ -10,13 +10,10 @@ const modalPrice = document.getElementById('modal-price');
 const formButton = document.getElementById('form-button');
 
 let editingProduct = null;
-let isEditing = false;
-let editId = null;
 
 function showLoader(state) {
   loadingOverlay.style.display = state ? 'flex' : 'none';
 }
-
 
 async function fetchProducts() {
   try {
@@ -63,71 +60,77 @@ function createCard(product) {
     </div>
   `;
 
-  card.querySelector('.edit').onclick = () => {
-  document.getElementById('title').value = card.dataset.title;
-  document.getElementById('description').value = card.dataset.description;
-  document.getElementById('price').value = card.dataset.price;
-  document.getElementById('image').value = card.dataset.image;
+  card.querySelector('.edit').addEventListener('click', () => {
+    document.getElementById('title').value = card.dataset.title;
+    document.getElementById('description').value = card.dataset.description;
+    document.getElementById('price').value = card.dataset.price;
+    document.getElementById('image').value = card.dataset.image;
 
-  editingProduct = card;
+    editingProduct = card;
+    formButton.textContent = "Edit Product";
+  });
 
-  formButton.textContent = "Edit Product";
-};
-
-  card.querySelector('.delete').onclick = () => {
+  card.querySelector('.delete').addEventListener('click', () => {
     card.remove();
-  };
+  });
 
-  card.querySelector('.details').onclick = () => {
+  card.querySelector('.details').addEventListener('click', () => {
     modalImage.src = card.dataset.image;
     modalTitle.textContent = card.dataset.title;
     modalDesc.textContent = card.dataset.description;
     modalPrice.textContent = `$${card.dataset.price}`;
     modal.style.display = 'block';
-  };
+  });
 
   productList.appendChild(card);
 }
 
+function addNewProduct(title, description, price, image) {
+  const newProduct = { title, description, price, image };
+  createCard(newProduct);
+}
+
+function updateProduct(card, title, description, price, image) {
+  card.querySelector('.product-title').textContent = title;
+  card.querySelector('.product-description').textContent = description;
+  card.querySelector('.product-price').textContent = `$${price}`;
+  card.querySelector('img').src = image;
+
+  card.dataset.title = title;
+  card.dataset.description = description;
+  card.dataset.price = price;
+  card.dataset.image = image;
+}
+
 productForm.addEventListener('submit', (e) => {
   e.preventDefault();
+
   const title = document.getElementById('title').value.trim();
   const description = document.getElementById('description').value.trim();
   const price = parseFloat(document.getElementById('price').value.trim());
   const image = document.getElementById('image').value.trim();
 
-  if (!title || !description || isNaN(price) || !image) return;
+  if (!title || !description || !image || !Number.isFinite(price) || price <= 0) return;
 
   if (editingProduct) {
-    editingProduct.querySelector('.product-title').textContent = title;
-    editingProduct.querySelector('.product-description').textContent = description;
-    editingProduct.querySelector('.product-price').textContent = `$${price}`;
-    editingProduct.querySelector('img').src = image;
-
-    editingProduct.dataset.title = title;
-    editingProduct.dataset.description = description;
-    editingProduct.dataset.price = price;
-    editingProduct.dataset.image = image;
-
+    updateProduct(editingProduct, title, description, price, image);
     editingProduct = null;
-
     formButton.textContent = "Add Product";
   } else {
-    const newProduct = { title, description, price, image };
-    createCard(newProduct);
+    addNewProduct(title, description, price, image);
   }
 
   productForm.reset();
 });
 
-closeModalBtn.onclick = () => {
+closeModalBtn.addEventListener('click', () => {
   modal.style.display = 'none';
-};
+});
 
-window.onclick = (e) => {
+modal.addEventListener('click', (e) => {
   if (e.target === modal) {
     modal.style.display = 'none';
   }
-};
+});
 
 fetchProducts();
