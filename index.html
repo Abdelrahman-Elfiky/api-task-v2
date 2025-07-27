@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Catalog</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <section class="product-section">
+    <div class="section-header">
+      <h2 class="label">Products</h2>
+      <p class="big">Our Products</p>
+      <p class="description">Have a good setup for your minimalist home</p>
+    </div>
+
+    <form id="product-form" class="product-form">
+      <input type="text" id="title" placeholder="Product Title" required />
+      <input type="text" id="description" placeholder="Product Description" required />
+      <input type="number" id="price" placeholder="Price" step="0.01" required />
+      <input type="url" id="image" placeholder="Image URL" required />
+      <button type="submit" id="form-button">Add Product</button>
+    </form>
+
+    <div class="product-list" id="product-list"></div>
+  </section>
+
+  <div class="modal" id="product-modal">
+    <div class="modal-content">
+      <span class="close-button" id="close-modal">&times;</span>
+      <img id="modal-image" src="" alt="Product Image" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <div class="modal-price" id="modal-price"></div>
+    </div>
+  </div>
+
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loader"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
