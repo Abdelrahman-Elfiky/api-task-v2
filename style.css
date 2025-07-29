@@ -6,10 +6,22 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f9f9f9;
+  background-color: var(--bg-color);
   padding: 1rem;
 }
+:root{
+  --main-color: #676767;
+  --bg-color:#f9f9f9;
+  --discription:#555;
+  --dark-color:#222;
+  --edit:#ffc107;
+  --delete:#dc3545;
+  --details:#007bff;
+  --edit-hover:#e0a800;
+  --delete-hover:#c82333;
+  --details-hover:#0056b3;
 
+}
 .product-section {
   max-width: 100%;
   padding: 1rem;
@@ -21,24 +33,24 @@ body {
 }
 
 .section-header .label {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.5em;
-  color: #676767;
+  color:var(--main-color) ;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
 }
 
 .section-header .big {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
 .section-header .description {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.6;
-  color: #676767;
+  color: var(--main-color);
   margin-bottom: 1.5rem;
 }
 
@@ -46,7 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 500px;
+  max-width: 90%;
   margin: 0 auto 2rem auto;
 }
 
@@ -59,8 +71,8 @@ body {
 }
 
 .product-form button {
-  background-color: #222;
-  color: #fff;
+  background-color: var(--dark-color);
+  color: var(--bg-color);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -76,7 +88,7 @@ body {
 }
 
 .product-card {
-  background-color: #fff;
+  background-color: var(--bg-color);
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -91,9 +103,9 @@ body {
 }
 
 .product-image {
-  background-color: #f0f0f0;
+  background-color: var(--bg-color);
   padding: 1rem;
-  height: 200px;
+  height: 12.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,14 +125,14 @@ body {
 
 .product-description {
   font-size: 0.95rem;
-  color: #555;
+  color: var(--discription);
   padding: 0.5rem 1rem;
 }
 
 .product-separator {
   width: 20%;
   height: 2px;
-  background-color: #ddd;
+  background-color: var(--bg-color);
   margin: 0.5rem auto;
 }
 
@@ -148,30 +160,30 @@ body {
 }
 
 .card-buttons .edit {
-  background-color: #ffc107;
-  color: #000;
+  background-color: var(--edit);
+  color: var(--dark-color);
 }
 
 .card-buttons .edit:hover {
-  background-color: #e0a800;
+  background-color: var(--edit-hover);
 }
 
 .card-buttons .delete {
-  background-color: #dc3545;
-  color: #fff;
+  background-color: var(--delete);
+  color: var(--bg-color);
 }
 
 .card-buttons .delete:hover {
-  background-color: #c82333;
+  background-color: var(--delete-hover);
 }
 
 .card-buttons .details {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--details);
+  color: var(--bg-color);
 }
 
 .card-buttons .details:hover {
-  background-color: #0056b3;
+  background-color: var(--details-hover);
 }
 
 .modal {
@@ -187,38 +199,38 @@ body {
 }
 
 .modal-content {
-  background-color: #fff;
+  background-color: var(--bg-color);
   margin: 10% auto;
   padding: 2rem;
   border-radius: 12px;
-  max-width: 500px;
+  max-width: 90%;
   text-align: center;
   position: relative;
 }
 
 .modal-content img {
   max-width: 100%;
-  height: 200px;
+  height: 12.5rem;
   object-fit: contain;
 }
 
 .modal-price {
   font-size: 1.5rem;
-  color: #222;
+  color: var(--dark-color);
   margin-top: 1rem;
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 0.625rem;
+  right: 1rem;
   font-size: 1.5rem;
   color: #999;
   cursor: pointer;
 }
 
 .close-button:hover {
-  color: #000;
+  color: var(--dark-color);
 }
 
 .loading-overlay {
@@ -235,10 +247,10 @@ body {
 }
 
 .loader {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border: 5px solid #ccc;
-  border-top-color: #222;
+  border-top-color: var(--dark-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -255,12 +267,12 @@ body {
   }
 
   .section-header .big {
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .product-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
